@@ -1,45 +1,69 @@
 # word guesser !!
 import random
+import time
+
 print(' ')
 print(' ')
 print('Welcome to the Number Guesser!')
-print(' ')
 print(' ')
 
 count = 0
 play = True
 
+
 while play == True:
   while True:
+    print(' ')
     high = input("I'm thinking of a number between 1 and _?: ")
     if high.isdigit():
       break
     else:
-      print("Wrong Input.. Please type in a number")
+      print("   Wrong Input... Please enter a number")
     
   number = random.randint(1, int(high))
 
   print(' ')
+  print(' ')
+  print("I'm thinking...")
+  time.sleep(2)
+  
+  print(' ')
+  print(' ')
+  print(' ')
   print('Ok, I got one!')
   print("I'm thinking of a number between 1 and", int(high))
 
-  while True:
+  while True:    #game
     
-    guess = int(input("Guess the number:  "))
+    guess = input("Guess the number: ")
+
+    while not guess.isdigit():
+      print("   Invalid input... Please enter a number.")
+      guess = input("Guess the number: ")
+
     
     count = count + 1
     
-    if guess == number:
+    if int(guess) == number:
+      print(' ')
+      print(' ')
       print('Correct!')
       break
-    elif guess > number:
-      print('Lower')
-    elif guess < number:
-      print('Higher')
+    elif int(guess) > number:
+      print(' ')
+      print(' ')
+      print('Lower than', guess)
+    elif int(guess) < number:
+      print(' ')
+      print(' ')
+      print('Higher than', guess)
     else:
       print('Wrong Input...')
 
-  print("That took", count, 'attempts.')
+  if count == 1:
+    print("Wow! That took", count, 'attempt!')
+  else:
+    print("That took", count, 'attempts.')
   
   
   again = input("Would you like to play again? (y/n): ")
@@ -60,3 +84,7 @@ while play == True:
         break
       else:
         continue
+    
+print(' ')
+print('Thanks for playing!')
+print(' ')
